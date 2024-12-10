@@ -8,9 +8,9 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["inject.js"],
+            "resources": ["inject.js", "scripts/melonticket/injected.js"],
             "matches": ["<all_urls>"]
-          }
+        }
     ],
     "content_scripts": [
         {
@@ -22,8 +22,17 @@
         },
         {
             "matches": [
+                "https://tkglobal.melon.com/*"
+            ],
+            "js": ["scripts/melonticket/interceptor.js"],
+            "run_at": "document_start",
+            "all_frames": true
+        },
+        {
+            "matches": [
                 "https://tkglobal.melon.com/reservation/popup/onestop.htm/*",
-                "https://tkglobal.melon.com/reservation/popup/onestop.htm"
+                "https://tkglobal.melon.com/reservation/popup/onestop.htm",
+                "https://tkglobal.melon.com/reservation/popup/stepBlock.htm*"
             ],
             "js": ["scripts/common/storage.js", "scripts/common/sleep.js", "scripts/melonticket/seat.js"],
             "run_at":"document_end"
@@ -45,5 +54,5 @@
         "16": "assets/logo_easy_korea_concert.png",
         "48": "assets/logo_easy_korea_concert.png",
         "128": "assets/logo_easy_korea_concert.png"
-      }
+    }
 }
